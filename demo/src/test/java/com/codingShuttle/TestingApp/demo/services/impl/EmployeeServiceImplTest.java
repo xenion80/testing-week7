@@ -23,8 +23,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@Import(TestContainerCofiguration.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceImplTest {
     @Mock
@@ -44,7 +42,7 @@ class EmployeeServiceImplTest {
     void setUp(){
         mockEmployee=Employee.builder()
                 .id(1L)
-                .name("karan")
+                .name("Karan")
                 .email("karan@gmail.com")
                 .salary(200L)
                 .build();
@@ -124,7 +122,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void testUpdateEmployee_whenEmployeeDoesNotExists_thenThrowException(){
-        //arrage
+        //arrange
         when(employeeRepository.findById(1L)).thenReturn(Optional.empty());
 //act and assert
         assertThatThrownBy(()->employeeService.updateEmployee(1L,mockemployeeDto))
@@ -138,7 +136,7 @@ class EmployeeServiceImplTest {
     void testUpdateEmployee_whenAttemptingToUpdateEmail_thenThrowException(){/*need supervision again in this test case didn't
     understand how its changing the email beforehand and checking if it was equal afterward*/
         when(employeeRepository.findById(mockemployeeDto.getId())).thenReturn(Optional.of(mockEmployee));
-        mockemployeeDto.setName("RAndom");
+        mockemployeeDto.setName("Random");
         mockemployeeDto.setEmail("random@gamil.com");
 
         //act and assert
