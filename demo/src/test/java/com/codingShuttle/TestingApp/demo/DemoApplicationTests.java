@@ -51,7 +51,7 @@ class DemoApplicationTests {
 		int b=0;
 		assertThatThrownBy(()->divideTwoNumbers(a,b))
 				.isInstanceOf(ArithmeticException.class)
-				.hasMessage("Tried to divide by zero");
+				.hasMessage("/ by zero");
 //		double result=divideTwoNumbers(a,b);
 	}
 	int addTwoNumbers(int a, int b){
